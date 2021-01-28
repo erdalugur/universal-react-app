@@ -1,38 +1,32 @@
 {
   "name": "react-session",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@testing-library/jest-dom": "^5.11.4",
-    "@testing-library/react": "^11.1.0",
-    "@testing-library/user-event": "^12.1.10",
-    "react": "^17.0.1",
-    "react-dom": "^17.0.1",
-    "react-scripts": "4.0.1",
-    "web-vitals": "^0.2.4"
-  },
+  "version": "1.0.0",
+  "description": "",
+  "main": "server/index.js",
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "start": "npm run production && npm run serve",
+    "build": "webpack -w",
+    "dev": "nodemon server/index.js",
+    "serve": "node build/app.js"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
+  "keywords": [],
+  "author": "Uğur Erdal",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/core": "latest",
+    "@babel/node": "latest",
+    "@babel/plugin-proposal-class-properties": "latest",
+    "@babel/plugin-transform-runtime": "^7.12.1",
+    "@babel/preset-env": "latest",
+    "@babel/preset-react": "latest",
+    "@babel/runtime": "^7.12.5",
+    "babel-loader": "latest",
+    "cors": "^2.8.5",
+    "cross-env": "latest",
+    "express": "latest",
+    "nodemon": "latest",
+    "npm-run-all": "latest",
+    "webpack": "latest",
+    "webpack-cli": "latest"
   }
 }

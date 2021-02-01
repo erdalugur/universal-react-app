@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 
-export const useQuery = function (uri) {
-    const [data, setData] = useState()
+export const useQuery = function (uri, initialState) {
+    const [data, setData] = useState(initialState)
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState('')
 

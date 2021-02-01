@@ -4,7 +4,7 @@
   "description": "",
   "main": "server/index.js",
   "scripts": {
-    "start": "npm run production && npm run serve",
+    "start": "nodemon server/index.js",
     "build": "webpack -w",
     "dev": "nodemon server/index.js",
     "serve": "node build/app.js"
@@ -21,6 +21,7 @@
     "@babel/preset-react": "latest",
     "@babel/runtime": "^7.12.5",
     "babel-loader": "latest",
+    "body-parser": "^1.19.0",
     "cors": "^2.8.5",
     "cross-env": "latest",
     "express": "latest",

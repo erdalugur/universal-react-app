@@ -3,7 +3,7 @@ import { useParams } from 'react-router-dom';
 import { Card } from '../components/Card';
 import { useQuery } from '../hooks'
 
-export function Movie() {
+export default function Movie() {
     const [ticket, setTicket] = useState(1)
     const params = useParams()
     const { data, loading } = useQuery(`http://localhost:5000/api/movie/${params.id}`)

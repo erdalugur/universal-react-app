@@ -1,7 +1,9 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useParams } from 'react-router-dom';
 import { Card } from '../components/Card';
 import { useQuery } from '../hooks'
+import { Button, Grid } from '@material-ui/core'
+import { Spinner } from '../components/Spinner'
 
 export default function Movie() {
     const [ticket, setTicket] = useState(1)
@@ -15,36 +17,38 @@ export default function Movie() {
         setTicket(ticket - 1)
     }
     return (
-        <div className="container app">
+        <>
             {loading ? (
-                <div className="spinner">
-                    <div className="spinner-border text-light" role="status"></div>
-                </div>
+                <Spinner />
             ) : data && (
-                <div className="row">
-                    <Card {...data} direction="back" />
-                    <div className="col-4 mt-50">
-                        <h3>{data.name}</h3>
-                        <p className="mt-50">{data.overview}</p>
-                        <div className="btn-group mt-50" role="group" aria-label="Basic example">
-                            <button type="button" className="btn btn-danger" onClick={decrement}>
-                                <span class="material-icons">
-                                    remove
+                <Grid container spacing={2}>
+                    <Grid item xs={4}>
+                        <Card {...data} direction="back" />
+                    </Grid>
+                    <Grid item xs={8}>
+                        <div className="col-4 mt-50">
+                            <h3>{data.name}</h3>
+                            <p className="mt-50">{data.overview}</p>
+                            <div className="btn-group mt-50" role="group" aria-label="Basic example">
+                                <Button type="button" onClick={decrement}>
+                                    <span class="material-icons">
+                                        remove
                                     </span>
-                            </button>
-                            <button type="button" className="btn btn-default">{ticket}</button>
-                            <button type="button" className="btn btn-danger" onClick={increment}>
-                                <span class="material-icons">
-                                    add
+                                </Button>
+                                <Button type="button" className="btn btn-default">{ticket}</Button>
+                                <Button type="button" className="btn btn-danger" onClick={increment}>
+                                    <span class="material-icons">
+                                        add
                                     </span>
-                            </button>
+                                </Button>
+                            </div>
+                            <br />
+                            <Button variant="contained" color="primary" onClick={() => alert('Success')}>Buy Now</Button>
                         </div>
-                        <br />
-                        <button className="btn btn-warning mt-50" onClick={() => alert('Success')}>Buy Now</button>
-                    </div>
-                </div>
+                    </Grid>
+                </Grid>
             )}
-        </div>
+        </>
     );
 }
 

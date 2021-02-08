@@ -1,22 +1,31 @@
-import { lazy, Suspense } from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
+import { configureTheme } from './theme';
+import App from './App'
+import { AppThemeProvider, useAppTheme } from './hooks'
 
-const Movies = lazy(() => import('./pages/movies'))
-const Movie = lazy(() => import('./pages/movie'))
-const NotFound = lazy(() => import('./pages/notFound'))
+const Main = () => {
+  const { type } = useAppTheme()
+  const prefersDarkMode = type == 'dark'
+  const theme = React.useMemo(
+    () =>
+      configureTheme({ type: prefersDarkMode ? 'dark' : 'light' }),
+    [prefersDarkMode],
+  );
+  return (
+    <MuiThemeProvider theme={theme}>
+      <CssBaseline />
+      <App />
+    </MuiThemeProvider>
+  )
+}
 
 ReactDOM.render(
-  <Suspense fallback={() => <div>loading...</div>}>
-    <BrowserRouter>
-      <Switch>
-        <Route component={Movies} exact path="/" />
-        <Route component={Movies} exact path="/movies" />
-        <Route component={Movie} exact path="/movie/:id" />
-        <Route component={NotFound} />
-      </Switch>
-    </BrowserRouter>
-  </Suspense>,
+  <AppThemeProvider>
+    <Main />
+  </AppThemeProvider>,
   document.getElementById('root')
 );

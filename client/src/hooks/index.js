@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, createContext, useReducer, useContext } from 'react'
 
 export const useQuery = function (uri, initialState) {
     const [data, setData] = useState(initialState)
@@ -24,3 +24,24 @@ export const useQuery = function (uri, initialState) {
         error
     }
 }
+
+
+export const AppThemeContext = createContext({ type: 'dark', changeTheme: () => null })
+
+
+export const AppThemeProvider = (props) => {
+    const [type, dispatch] = useReducer(
+        (state = 'dark') => {
+            return state === 'dark' ? 'light' : 'dark'
+        }, 'dark')
+    return (
+        <AppThemeContext.Provider value={{
+            type,
+            changeTheme: () => dispatch()
+        }}>
+            {props.children}
+        </AppThemeContext.Provider>
+    )
+}
+
+export const useAppTheme = () => useContext(AppThemeContext)

@@ -5,13 +5,13 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-image: url('http://localhost:5000/images/bg_noise.jpg');
+  /* background-image: url('http://localhost:5000/images/bg_noise.jpg');
   color: #fff;
-  height: 100vh;
+  height: 100vh; */
 }
 
 .app {
-  padding: 150px;
+  padding: 70px 0px;
 }
 .card {
   padding: 10px;
@@ -80,7 +80,7 @@ body {
 }
 
 span.material-icons {
-    font-size: 20px;
+
     color: #f7c607;
 }
 
